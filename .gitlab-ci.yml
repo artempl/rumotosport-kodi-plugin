@@ -53,12 +53,13 @@ pages:
     - cd "${ADDON_ID}" && zip -r "../${ADDON_ID}-${VERSION}.zip" . && cd ..
 
     # Build repository index: addons.xml + addons.xml.md5
+    # Strip the <?xml?> declaration from the addon to avoid duplication
     - mkdir -p public
     - |
       {
         echo '<?xml version="1.0" encoding="UTF-8"?>'
         echo '<addons>'
-        cat "${ADDON_ID}/addon.xml"
+        sed '1{/^<?xml/d}' "${ADDON_ID}/addon.xml"
         echo '</addons>'
       } > public/addons.xml
     - md5sum public/addons.xml | cut -d' ' -f1 > public/addons.xml.md5
