@@ -25,6 +25,7 @@ release:
     - *before_script_common
   script:
     - zip -r "${ADDON_ID}.zip" "${ADDON_ID}/"
+    - cd "${REPO_ID}" && zip -r "../${REPO_ID}.zip" . && cd ..
   release:
     name: "RuMotoSport Kodi $CI_COMMIT_TAG"
     description: "Release $CI_COMMIT_TAG"
@@ -33,9 +34,12 @@ release:
       links:
         - name: "${ADDON_ID}.zip"
           url: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/jobs/${CI_JOB_ID}/artifacts/${ADDON_ID}.zip"
+        - name: "${REPO_ID}.zip"
+          url: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/jobs/${CI_JOB_ID}/artifacts/${REPO_ID}.zip"
   artifacts:
     paths:
       - "${ADDON_ID}.zip"
+      - "${REPO_ID}.zip"
 
 pages:
   stage: pages
