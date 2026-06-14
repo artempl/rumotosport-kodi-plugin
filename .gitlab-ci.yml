@@ -68,10 +68,12 @@ publish:
     - md5sum addons.xml | cut -d' ' -f1 > addons.xml.md5
 
     # Upload to GitLab Generic Packages Registry
-    - upload() { curl -s --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file "$1" "${PKG_BASE}/$2"; }
-    - upload addons.xml addons.xml
-    - upload addons.xml.md5 addons.xml.md5
-    - upload "${ADDON_ID}-${VERSION}.zip" "${ADDON_ID}/${ADDON_ID}-${VERSION}.zip"
+    - curl -s --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file addons.xml "${PKG_BASE}/addons.xml"
+    - curl -s --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file addons.xml.md5 "${PKG_BASE}/addons.xml.md5"
+    - |
+      curl -s --header "JOB-TOKEN: $CI_JOB_TOKEN" \
+        --upload-file "${ADDON_ID}-${VERSION}.zip" \
+        "${PKG_BASE}/${ADDON_ID}/${ADDON_ID}-${VERSION}.zip"
 
     # Smoke test: verify downloads
     - echo "=== Verification ==="
