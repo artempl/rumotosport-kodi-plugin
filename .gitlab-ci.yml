@@ -68,8 +68,8 @@ publish:
     - md5sum addons.xml | cut -d' ' -f1 > addons.xml.md5
 
     # Upload to GitLab Generic Packages Registry
-    - curl -s --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file addons.xml "${PKG_BASE}/addons.xml"
-    - curl -s --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file addons.xml.md5 "${PKG_BASE}/addons.xml.md5"
+    - 'curl -s --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file addons.xml "${PKG_BASE}/addons.xml"'
+    - 'curl -s --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file addons.xml.md5 "${PKG_BASE}/addons.xml.md5"'
     - |
       curl -s --header "JOB-TOKEN: $CI_JOB_TOKEN" \
         --upload-file "${ADDON_ID}-${VERSION}.zip" \
@@ -79,5 +79,5 @@ publish:
     - echo "=== Verification ==="
     - curl -sL "${PKG_BASE}/addons.xml" | head -3
     - echo "..."
-    - curl -sILo /dev/null -w "addons.xml.md5: HTTP %{http_code}\n" "${PKG_BASE}/addons.xml.md5"
-    - curl -sILo /dev/null -w "plugin zip: HTTP %{http_code}\n" "${PKG_BASE}/${ADDON_ID}/${ADDON_ID}-${VERSION}.zip"
+    - 'curl -sILo /dev/null -w "addons.xml.md5: HTTP %{http_code}\n" "${PKG_BASE}/addons.xml.md5"'
+    - 'curl -sILo /dev/null -w "plugin zip: HTTP %{http_code}\n" "${PKG_BASE}/${ADDON_ID}/${ADDON_ID}-${VERSION}.zip"'
