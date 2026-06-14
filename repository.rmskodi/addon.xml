@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="repository.rmskodi"
+       version="1.0.0"
+       name="RuMotoSport Repository"
+       provider-name="arciom">
+  <extension point="xbmc.addon.repository">
+    <info compressed="false">https://artempl.gitlab.io/rumotosport-kodi-plugin/addons.xml</info>
+    <checksum>https://artempl.gitlab.io/rumotosport-kodi-plugin/addons.xml.md5</checksum>
+    <datadir zip="true">https://artempl.gitlab.io/rumotosport-kodi-plugin/</datadir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">Repository for RuMotoSport Kodi plugin</summary>
+    <description lang="en_GB">Provides automatic updates for the RuMotoSport Kodi plugin. Browse and play MotoGP race recordings from rumotosport.ru.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
