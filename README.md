@@ -22,11 +22,18 @@ Years
 
 ## Installation
 
-1. Package the addon:
-   ```bash
-   zip -r plugin.video.rmskodi.zip plugin.video.rmskodi/
-   ```
-2. In Kodi: **Add-ons** → **Install from zip file** → select `plugin.video.rmskodi.zip`
+### Via repository (recommended — auto-updates)
+
+1. In Kodi: **Settings → System → Add-ons** → enable **Unknown sources**
+2. **Settings → File Manager → Add source** → enter `https://artempl.gitlab.io/rumotosport-kodi-plugin/`
+3. **Settings → Add-ons → Install from zip file** → select the added source → install `repository.rmskodi-1.0.0.zip`
+4. **Install from repository → RuMotoSport Repository → Video add-ons → RuMotoSport Kodi → Install**
+
+The plugin will update automatically when new versions are released.
+
+### Manual ZIP
+
+Download `plugin.video.rmskodi.zip` from the [Releases page](https://gitlab.com/artempl/rumotosport-kodi-plugin/-/releases) and install via **Add-ons → Install from zip file**.
 
 ## Development
 
