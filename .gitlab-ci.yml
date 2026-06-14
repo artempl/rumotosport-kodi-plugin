@@ -45,8 +45,8 @@ pages:
   before_script:
     - apk add --no-cache zip
   script:
-    # Extract version from addon.xml
-    - VERSION=$(sed -n 's/.*version="\([^"]*\)".*/\1/p' "${ADDON_ID}/addon.xml" | head -1)
+    # Extract version from addon.xml (only from <addon> tag, skip XML declaration)
+    - VERSION=$(sed -n '/<addon/s/.*version="\([^"]*\)".*/\1/p' "${ADDON_ID}/addon.xml")
     - echo "Building repository for ${ADDON_ID} version ${VERSION}"
 
     # Create versioned addon zip
