@@ -2,9 +2,9 @@
 <addon id="repository.rmskodi" version="1.0.1" name="RuMotoSport Repository" provider-name="arciom">
   <extension point="xbmc.addon.repository">
     <dir minversion="21.0.0">
-      <info compressed="false">https://artempl.gitlab.io/rumotosport-kodi-plugin/addons.xml</info>
-      <checksum>https://artempl.gitlab.io/rumotosport-kodi-plugin/addons.xml.md5</checksum>
-      <datadir zip="true">https://artempl.gitlab.io/rumotosport-kodi-plugin/</datadir>
+      <info compressed="false">https://artempl.github.io/rumotosport-kodi-plugin/addons.xml</info>
+      <checksum>https://artempl.github.io/rumotosport-kodi-plugin/addons.xml.md5</checksum>
+      <datadir zip="true">https://artempl.github.io/rumotosport-kodi-plugin/</datadir>
     </dir>
   </extension>
   <extension point="xbmc.addon.metadata">
