@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RuMotoSport Kodi Addon — MotoGP 2026 Race Recordings</title>
+  <meta name="description" content="Free Kodi addon for browsing and streaming MotoGP 2026 race recordings. Watch MotoGP, Moto2, and Moto3 sessions — FP1, Qualifying, Race, Warmup, and more. HLS streaming, zero external dependencies.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="RuMotoSport Kodi Addon — MotoGP 2026 Race Recordings">
+  <meta property="og:description" content="Free Kodi addon for browsing and streaming MotoGP 2026 race recordings. Watch MotoGP, Moto2, and Moto3 sessions via HLS.">
+  <meta property="og:url" content="https://artempl.github.io/rumotosport-kodi-plugin/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://artempl.github.io/rumotosport-kodi-plugin/icon.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RuMotoSport Kodi Addon — MotoGP 2026">
+  <meta name="twitter:description" content="Free Kodi addon for browsing and streaming MotoGP 2026 race recordings.">
+
+  <!-- JSON-LD Structured Data: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "RuMotoSport Kodi",
+    "operatingSystem": "Kodi 21 (Omega)",
+    "applicationCategory": "Multimedia",
+    "description": "Kodi video addon for browsing and streaming MotoGP 2026 race recordings. Supports MotoGP, Moto2, Moto3 championships with HLS streaming.",
+    "url": "https://github.com/artempl/rumotosport-kodi-plugin",
+    "downloadUrl": "https://github.com/artempl/rumotosport-kodi-plugin/releases",
+    "softwareVersion": "1.0.0",
+    "license": "https://www.gnu.org/licenses/gpl-2.0.html",
+    "author": {
+      "@type": "Person",
+      "name": "arciom"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      line-height: 1.6;
+    }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      color: #8b949e;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    header .badge {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.35rem 1rem;
+      background: #1f6feb;
+      color: #fff;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    section { margin: 2.5rem 0; }
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #21262d;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .feature-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+    }
+    .feature-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .feature-card p {
+      color: #8b949e;
+      font-size: 0.9rem;
+    }
+
+    .nav-tree {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      font-family: "SF Mono", Monaco, Consolas, monospace;
+      font-size: 0.9rem;
+      line-height: 2;
+    }
+    .nav-tree .indent { padding-left: 1.5rem; }
+    .nav-tree .indent2 { padding-left: 3rem; }
+    .nav-tree .indent3 { padding-left: 4.5rem; }
+    .nav-tree .leaf { color: #7ee787; }
+    .nav-tree .folder { color: #d2a8ff; }
+
+    .install-steps {
+      list-style: none;
+      counter-reset: step;
+    }
+    .install-steps li {
+      counter-increment: step;
+      padding: 0.8rem 1rem 0.8rem 3rem;
+      position: relative;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      margin-bottom: 0.6rem;
+    }
+    .install-steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0.8rem;
+      top: 0.8rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      background: #1f6feb;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-right: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+    .btn-primary {
+      background: #238636;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #2ea043;
+      text-decoration: none;
+    }
+    .btn-secondary {
+      background: #21262d;
+      color: #e6edf3;
+      border: 1px solid #30363d;
+    }
+    .btn-secondary:hover {
+      background: #30363d;
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      color: #484f58;
+      font-size: 0.85rem;
+      padding: 2rem 0;
+      border-top: 1px solid #21262d;
+      margin-top: 3rem;
+    }
+    footer a { color: #484f58; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>RuMotoSport Kodi</h1>
+      <p>Free Kodi addon for browsing and streaming MotoGP 2026 race recordings — MotoGP, Moto2, Moto3, and additional sessions.</p>
+      <span class="badge">v1.0.0</span>
+    </header>
+
+    <section>
+      <h2>Features</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>🏁 All Championships</h3>
+          <p>MotoGP, Moto2, Moto3, and supplementary sessions — all in one place.</p>
+        </div>
+        <div class="feature-card">
+          <h3>📺 Every Session</h3>
+          <p>FP1, FP2, FP3, Qualifying, Race, Warmup, Press conferences, and more.</p>
+        </div>
+        <div class="feature-card">
+          <h3>▶️ HLS Streaming</h3>
+          <p>Direct HLS stream playback inside Kodi. No external players needed.</p>
+        </div>
+        <div class="feature-card">
+          <h3>📦 Zero Dependencies</h3>
+          <p>Pure Python stdlib — no pip packages or extra libraries required.</p>
+        </div>
+        <div class="feature-card">
+          <h3>📂 Browse by Year</h3>
+          <p>Navigate seasons, championships, race weekends, and individual sessions.</p>
+        </div>
+        <div class="feature-card">
+          <h3>🔄 Auto-Updates</h3>
+          <p>Install via repository for automatic updates when new versions are released.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Navigation</h2>
+      <div class="nav-tree">
+        <span class="folder">📁 Years</span><br>
+        <span class="indent"><span class="folder">📁 Championships (MotoGP, Moto2, Moto3, Дополнительно)</span></span><br>
+        <span class="indent2"><span class="folder">📁 Events / Race Weekends</span></span><br>
+        <span class="indent3"><span class="folder">📁 Sessions (FP1, Qualifying, Race, Warmup, Press, …)</span></span><br>
+        <span class="indent3"><span class="leaf">▶️ Play HLS stream</span></span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Installation</h2>
+      <h3 style="margin-bottom:0.6rem;font-size:1rem;">Via repository (recommended — auto-updates)</h3>
+      <ol class="install-steps">
+        <li>In Kodi: <strong>Settings → System → Add-ons</strong> → enable <strong>Unknown sources</strong></li>
+        <li>Download <code>repository.rmskodi.zip</code> from the <a href="https://github.com/artempl/rumotosport-kodi-plugin/releases">Releases page</a></li>
+        <li><strong>Settings → Add-ons → Install from zip file</strong> → select <code>repository.rmskodi.zip</code></li>
+        <li><strong>Install from repository → RuMotoSport Repository → Video add-ons → RuMotoSport Kodi → Install</strong></li>
+      </ol>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:1rem;">Direct ZIP (no auto-updates)</h3>
+      <p style="color:#8b949e;font-size:0.9rem;">Download <code>plugin.video.rmskodi.zip</code> from the <a href="https://github.com/artempl/rumotosport-kodi-plugin/releases">Releases page</a> and install via <strong>Add-ons → Install from zip file</strong>.</p>
+    </section>
+
+    <section style="text-align:center">
+      <h2>Get Started</h2>
+      <p style="margin-bottom:1.2rem;color:#8b949e;">Download the latest release and start watching MotoGP 2026 on your Kodi device.</p>
+      <a href="https://github.com/artempl/rumotosport-kodi-plugin/releases" class="btn btn-primary">Download Latest Release</a>
+      <a href="https://github.com/artempl/rumotosport-kodi-plugin" class="btn btn-secondary">View on GitHub</a>
+    </section>
+
+    <section>
+      <h2>Requirements</h2>
+      <ul style="padding-left:1.2rem;color:#8b949e;">
+        <li>Kodi 21 (Omega) or later</li>
+        <li>Python 3.x (bundled with Kodi)</li>
+        <li>Internet connection for streaming</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p><a href="https://github.com/artempl/rumotosport-kodi-plugin">GitHub</a> &middot; <a href="https://github.com/artempl/rumotosport-kodi-plugin/releases">Releases</a> &middot; <a href="https://github.com/artempl/rumotosport-kodi-plugin/issues">Issues</a></p>
+      <p style="margin-top:0.5rem;">Licensed under GPL-2.0-or-later</p>
+    </footer>
+  </div>
+</body>
+</html>
